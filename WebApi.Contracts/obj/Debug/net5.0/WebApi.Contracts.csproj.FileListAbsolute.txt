@@ -1,0 +1,11 @@
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\bin\Debug\net5.0\WebApi.Contracts.deps.json
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\bin\Debug\net5.0\WebApi.Contracts.dll
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\bin\Debug\net5.0\ref\WebApi.Contracts.dll
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\bin\Debug\net5.0\WebApi.Contracts.pdb
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.AssemblyInfo.cs
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.dll
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\ref\WebApi.Contracts.dll
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.pdb
