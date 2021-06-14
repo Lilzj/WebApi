@@ -9,3 +9,4 @@ C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contrac
 C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.dll
 C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\ref\WebApi.Contracts.dll
 C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.pdb
+C:\Users\hp\source\repos\WebApi\WebApi.Contracts\obj\Debug\net5.0\WebApi.Contracts.csprojAssemblyReference.cache
