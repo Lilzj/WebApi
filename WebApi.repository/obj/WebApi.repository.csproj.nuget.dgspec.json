@@ -33,7 +33,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\hp\\source\\repos\\WebApi\\WebApi.Entities\\WebApi.Entities.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\WebApi\\WebApi.Entities\\WebApi.Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

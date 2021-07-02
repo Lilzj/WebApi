@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using WebApi.Contracts;
 using WebApi.Entities;
 using WebApi.LoggerService;
+using WebApi.repository;
 
 namespace WebApi.Extensions
 {
@@ -33,5 +34,8 @@ namespace WebApi.Extensions
                 services.AddDbContext<RepositoryContext>(opts =>
                    opts.UseSqlServer(configuration.GetConnectionString("SqlConnections"), b =>
                         b.MigrationsAssembly("WebApi")));
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
     }
 }

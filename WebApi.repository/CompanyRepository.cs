@@ -15,5 +15,11 @@ namespace WebApi.repository
         {
 
         }
+
+        public IEnumerable<Company> GetAllCompanies(bool trackChanges) =>
+            FindAll(trackChanges)
+            .OrderBy(x => x.Name)
+            .ToList();
+      
     }
 }

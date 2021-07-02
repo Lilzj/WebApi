@@ -69,3 +69,5 @@ C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\WebApi.Entities.dll
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\WebApi.Entities.pdb
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\Humanizer.dll
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\WebApi.repository.dll
+C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\WebApi.repository.pdb

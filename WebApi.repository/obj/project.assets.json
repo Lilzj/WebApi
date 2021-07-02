@@ -164,6 +164,9 @@
       "WebApi.Contracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "WebApi.Entities": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/WebApi.Contracts.dll": {}
         },
