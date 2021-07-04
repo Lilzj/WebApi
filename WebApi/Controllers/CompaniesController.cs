@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Contracts;
+using WebApi.Entities.DTO;
 
 namespace WebApi.Controllers
 {
@@ -14,11 +16,13 @@ namespace WebApi.Controllers
     {
         private readonly IRepositoryManager _repo;
         private readonly ILoggerManager _log;
+        private readonly IMapper _map;
 
-        public CompaniesController(IRepositoryManager repo, ILoggerManager log)
+        public CompaniesController(IRepositoryManager repo, ILoggerManager log, IMapper mapper)
         {
             _repo = repo;
             _log = log;
+            _map = mapper;
         }
 
         [HttpGet]
@@ -27,7 +31,10 @@ namespace WebApi.Controllers
             try
             {
                 var companies = _repo.Company.GetAllCompanies(trackChanges: false);
-                return Ok(companies);
+
+                var companiesDto = _map.Map<IEnumerable<CompanyDTO>>(companies);
+
+                return Ok(companiesDto);
             }
             catch (Exception ex)
             {
