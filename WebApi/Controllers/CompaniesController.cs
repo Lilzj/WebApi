@@ -28,19 +28,27 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult GetCompanies()
         {
-            try
-            {
                 var companies = _repo.Company.GetAllCompanies(trackChanges: false);
 
                 var companiesDto = _map.Map<IEnumerable<CompanyDTO>>(companies);
 
                 return Ok(companiesDto);
-            }
-            catch (Exception ex)
+            
+        }
+
+        [HttpGet("{Id}")]
+        public IActionResult GetCompany(Guid id)
+        {
+            var company = _repo.Company.GetCompany(id, trackChanges: false);
+            if(company == null)
             {
-                _log.LogError($"something went wrong in the {nameof(GetCompanies)} action  {ex}");
-                return StatusCode(500, "Internal Server Error");
-               
+                _log.LogInfo($"Company with id {id} does not exist in the database");
+                return NotFound();
+            }
+            else
+            {
+                var companyDto =  _map.Map<CompanyDTO>(company);
+                return Ok(companyDto);
             }
         }
     }

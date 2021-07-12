@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Contracts;
 using WebApi.Extensions;
 
 namespace WebApi
@@ -46,7 +47,7 @@ namespace WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager log)
         {
             if (env.IsDevelopment()) 
             {
@@ -55,6 +56,7 @@ namespace WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
 
+            app.configureExceptionHandler(log);
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();

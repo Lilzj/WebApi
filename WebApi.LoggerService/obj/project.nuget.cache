@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "E5kCxZBPzKlIZnUJZDFBpTm/7xSdfDQ0rxq9UX92Gj8FxbedSEZuh6JgR6wrVM5+Jkt71LVsy826q1hze0uFxw==",
+  "dgSpecHash": "HdV5v584rRlOnA7kGXVBD4+DJwvUxRxSNb0EefM/FhFEOM1cg8NuYJw6gsqRh3E9vFy3nN2CibcusX0MXa4uUg==",
   "success": true,
   "projectFilePath": "C:\\Users\\hp\\source\\repos\\WebApi\\WebApi.LoggerService\\WebApi.LoggerService.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\nlog\\4.7.9\\nlog.4.7.9.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\nlog.extensions.logging\\1.7.2\\nlog.extensions.logging.1.7.2.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
