@@ -36,8 +36,8 @@ namespace WebApi.Controllers
             
         }
 
-        [HttpGet("{Id}")]
-        public IActionResult GetCompany(Guid id)
+        [HttpGet("{id}")]
+        public IActionResult GetCompany(string id)
         {
             var company = _repo.Company.GetCompany(id, trackChanges: false);
             if(company == null)

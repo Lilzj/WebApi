@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         }
 
 
-        public IActionResult GetEmployeesForCompany(Guid companyId)
+        public IActionResult GetEmployeesForCompany(string companyId)
         {
             var company = _repo.Company.GetCompany(companyId, trackChanges: false);
             if (company == null)
