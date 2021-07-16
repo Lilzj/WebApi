@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Contracts;
+using WebApi.Entities.DTO;
 
 namespace WebApi.Controllers
 {
@@ -25,7 +26,7 @@ namespace WebApi.Controllers
             _map = mapper; 
         }
 
-
+        [HttpGet]
         public IActionResult GetEmployeesForCompany(string companyId)
         {
             var company = _repo.Company.GetCompany(companyId, trackChanges: false);
@@ -37,8 +38,32 @@ namespace WebApi.Controllers
             else
             {
                 var employeesFromDb = _repo.Employee.GetEmployees(companyId, trackChanges: false);
-                return Ok(employeesFromDb);
+
+                var employessDto = _map.Map<IEnumerable<EmployeeDTO>>(employeesFromDb);
+
+                return Ok(employessDto);              
             }
+        }
+
+        [HttpGet("{id}", Name = "CompanyId")]
+        public IActionResult GetEmployeeForACompany(string companyId, string id)
+        {
+            var comapny = _repo.Company.GetCompany(companyId, trackChanges: false);
+            if(comapny ==null)
+            {
+                _log.LogInfo($"Company with the Id {companyId} does not exist in the database");
+                return NotFound();
+            }
+
+            var EmployeeDb = _repo.Employee.GetEmployee(companyId, id, trackChanges: false);
+            if (EmployeeDb == null)
+            {
+                _log.LogInfo($"Company with the Id {companyId} does not exist in the database");
+                return NotFound();
+            }
+
+            var employee = _map.Map<EmployeeDTO>(EmployeeDb);
+            return Ok(employee);
         }
     }
 }

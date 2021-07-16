@@ -10,5 +10,6 @@ namespace WebApi.Contracts
     public interface IEmployeeRepository
     {
         IEnumerable<Employee> GetEmployees(string companyId, bool trackChanges);
+        Employee GetEmployee(string companyId, string id, bool trackChanges);
     }
 }

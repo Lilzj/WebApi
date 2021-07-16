@@ -16,6 +16,10 @@ namespace WebApi.repository
 
         }
 
+        public Employee GetEmployee(string companyId, string id, bool trackChanges) =>
+            FindByCondition(e => e.CompanyId.Equals(companyId) && e.Id.Equals(id), trackChanges)
+            .SingleOrDefault();
+
         public IEnumerable<Employee> GetEmployees(string companyId, bool trackChanges) =>
             FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
             .OrderBy(e => e.name);
