@@ -17,6 +17,8 @@ namespace WebApi.profiles
                     opt => opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
 
             CreateMap<Employee, EmployeeDTO>();
+            CreateMap<AddCompanyDTO, Company>();
+            CreateMap<AddEmployeeDTO, Employee>();
 
         }
     }

@@ -16,6 +16,13 @@ namespace WebApi.repository
 
         }
 
+        public void AddEmployee(string companyId, Employee employee)
+        {
+            employee.CompanyId = companyId;
+            Create(employee);
+        }
+
+
         public Employee GetEmployee(string companyId, string id, bool trackChanges) =>
             FindByCondition(e => e.CompanyId.Equals(companyId) && e.Id.Equals(id), trackChanges)
             .SingleOrDefault();

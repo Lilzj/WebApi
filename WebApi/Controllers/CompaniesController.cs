@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Contracts;
 using WebApi.Entities.DTO;
+using WebApi.Entities.Models;
 
 namespace WebApi.Controllers
 {
@@ -36,7 +37,7 @@ namespace WebApi.Controllers
             
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name ="GetCompany")]
         public IActionResult GetCompany(string id)
         {
             var company = _repo.Company.GetCompany(id, trackChanges: false);
@@ -50,6 +51,23 @@ namespace WebApi.Controllers
                 var companyDto =  _map.Map<CompanyDTO>(company);
                 return Ok(companyDto);
             }
+        }
+
+        [HttpPost]
+        public IActionResult AddCompany([FromBody] AddCompanyDTO company)
+        {
+            if(company == null)
+            {
+                _log.LogInfo("companyDTO object sent from client id null.");
+                return BadRequest("companyDTO object is null");
+            }
+
+            var companyEntity = _map.Map<Company>(company);
+            _repo.Company.AddCompany(companyEntity);
+            _repo.Save();
+
+            var companyReturn = _map.Map<CompanyDTO>(companyEntity);
+            return CreatedAtRoute("GetCompany", new { id = companyReturn.Id }, companyReturn);
         }
     }
 }

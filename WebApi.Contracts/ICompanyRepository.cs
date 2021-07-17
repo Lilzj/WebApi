@@ -8,5 +8,6 @@ namespace WebApi.Contracts
     {
         public IEnumerable<Company> GetAllCompanies(bool trackChanges);
         Company GetCompany(string companyId, bool trackChanges);
+        void AddCompany(Company company);
     }
 }
