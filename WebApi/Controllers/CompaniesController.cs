@@ -69,5 +69,47 @@ namespace WebApi.Controllers
             var companyReturn = _map.Map<CompanyDTO>(companyEntity);
             return CreatedAtRoute("GetCompany", new { id = companyReturn.Id }, companyReturn);
         }
+
+        [HttpGet("collection/({ids})", Name ="companies")]
+        public IActionResult GetCompanies(IEnumerable<string> ids)
+        {
+            if(ids == null)
+            {
+                _log.LogError("Ids sent is null");
+                return BadRequest("Ids sent is null");
+            }
+
+            var companyEntities = _repo.Company.GetByIds(ids, trackChanges: false);
+            if(ids.Count() != companyEntities.Count())
+            {
+                _log.LogError("Some input ids are not valid");
+                return NotFound();
+            }
+
+            var companiesReturn = _map.Map<IEnumerable<CompanyDTO>>(companyEntities);
+            return Ok(companiesReturn);
+        }
+
+        [HttpPost("collection")] 
+        public IActionResult CreateCompanies([FromBody] IEnumerable<AddCompanyDTO> companies)
+        {
+            if (companies == null)
+            { 
+                _log.LogError("Company collection sent from client is null."); 
+                return BadRequest("Company collection is null"); 
+            } 
+
+            var companyEntities = _map.Map<IEnumerable<Company>>(companies);
+
+            foreach (var company in companyEntities)
+            {
+                _repo.Company.AddCompany(company); 
+            } 
+            _repo.Save();
+
+            var companiesReturn = _map.Map<IEnumerable<CompanyDTO>>(companyEntities); 
+
+            var ids = string.Join(",", companiesReturn.Select(c => c.Id));
+            return CreatedAtRoute("companies", new { ids }, companiesReturn); }
     }
 }

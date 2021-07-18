@@ -23,6 +23,10 @@ namespace WebApi.repository
             .OrderBy(x => x.Name)
             .ToList();
 
+        public IEnumerable<Company> GetByIds(IEnumerable<string> ids, bool trackChanges) =>
+            FindByCondition(c => ids.Contains(c.Id), trackChanges)
+            .ToList();
+
         public Company GetCompany(string companyId, bool trackChanges) =>
             FindByCondition(c => c.Id.Equals(companyId), trackChanges)
             .SingleOrDefault();
