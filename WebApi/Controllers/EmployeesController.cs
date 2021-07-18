@@ -46,7 +46,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "GetEmployeeForACompany")]
+        [HttpGet("{id}", Name = "companyId")]
         public IActionResult GetEmployeeForACompany(string companyId, string id)
         {
             var comapny = _repo.Company.GetCompany(companyId, trackChanges: false);
@@ -88,7 +88,9 @@ namespace WebApi.Controllers
             _repo.Save();
 
             var EmployeeReturn = _map.Map<EmployeeDTO>(employeeEntity);
-            return CreatedAtRoute("GetEmployeeForACompany", new { companyId, id = EmployeeReturn.Id, EmployeeReturn });
+            return CreatedAtRoute("companyId", new { 
+                companyId = company.Id, id = EmployeeReturn.Id
+                }, EmployeeReturn);
 
 
         }
