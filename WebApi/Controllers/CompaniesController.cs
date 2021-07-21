@@ -27,7 +27,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCompanies()
+        public IActionResult GetAllCompanies()
         {
                 var companies = _repo.Company.GetAllCompanies(trackChanges: false);
 
@@ -91,7 +91,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("collection")] 
-        public IActionResult CreateCompanies([FromBody] IEnumerable<AddCompanyDTO> companies)
+        public IActionResult AddCompanies([FromBody] IEnumerable<AddCompanyDTO> companies)
         {
             if (companies == null)
             { 

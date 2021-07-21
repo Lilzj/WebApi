@@ -11,5 +11,7 @@ namespace WebApi.Entities.DTO
         public string Name { get; set; }
         public string Address { get; set; }
         public string Country { get; set; }
+
+        public IEnumerable<AddEmployeeDTO> Employees { get; set; }
     }
 }
