@@ -131,5 +131,27 @@ namespace WebApi.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateCompany(string id, [FromBody] UpdateCompanyDTO company)
+        {
+            if(company == null)
+            {
+                _log.LogError("UpdateCompanyDTO sent from client is null");
+                return BadRequest("UpdateCompanyDTO is null");
+            }
+
+            var companyEntity = _repo.Company.GetCompany(id, trackChanges: false);
+            if(companyEntity == null)
+            {
+                _log.LogInfo($"Company with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _map.Map(company, companyEntity);
+            _repo.Save();
+
+            return NoContent();
+        }
     }
 }

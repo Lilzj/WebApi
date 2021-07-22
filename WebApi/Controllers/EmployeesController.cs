@@ -83,6 +83,12 @@ namespace WebApi.Controllers
                 return NotFound();
             }
 
+            if (!ModelState.IsValid)
+            {
+                _log.LogError("Invalid model state for the EmployeeForCreationDto object");
+                return UnprocessableEntity(ModelState);
+            }
+
             var employeeEntity = _map.Map<Employee>(employee);
             _repo.Employee.AddEmployee(companyId, employeeEntity);
             _repo.Save();
@@ -133,7 +139,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
 
-            var employeeEntity = _repo.Employee.GetEmployee(companyId, id, trackChanges: false);
+            var employeeEntity = _repo.Employee.GetEmployee(companyId, id, trackChanges: true);
             if(employeeEntity == null)
             {
                 _log.LogInfo($"Employee with id: {id} doesn't exist in the database.");
