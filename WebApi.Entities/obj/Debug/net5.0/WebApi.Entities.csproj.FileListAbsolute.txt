@@ -2,7 +2,6 @@ C:\Users\hp\source\repos\WebApi\WebApi.Entities\bin\Debug\net5.0\WebApi.Entities
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\bin\Debug\net5.0\WebApi.Entities.dll
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\bin\Debug\net5.0\ref\WebApi.Entities.dll
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\bin\Debug\net5.0\WebApi.Entities.pdb
-C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\WebApi.Entities.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\WebApi.Entities.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\WebApi.Entities.AssemblyInfoInputs.cache
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\WebApi.Entities.AssemblyInfo.cs
@@ -10,3 +9,4 @@ C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\WebApi.Entities
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\WebApi.Entities.dll
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\ref\WebApi.Entities.dll
 C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\WebApi.Entities.pdb
+C:\Users\hp\source\repos\WebApi\WebApi.Entities\obj\Debug\net5.0\WebApi.Entities.csproj.AssemblyReference.cache

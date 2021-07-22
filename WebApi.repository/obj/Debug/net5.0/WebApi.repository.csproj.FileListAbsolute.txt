@@ -6,7 +6,6 @@ C:\Users\hp\source\repos\WebApi\WebApi.repository\bin\Debug\net5.0\WebApi.Contra
 C:\Users\hp\source\repos\WebApi\WebApi.repository\bin\Debug\net5.0\WebApi.Entities.dll
 C:\Users\hp\source\repos\WebApi\WebApi.repository\bin\Debug\net5.0\WebApi.Contracts.pdb
 C:\Users\hp\source\repos\WebApi\WebApi.repository\bin\Debug\net5.0\WebApi.Entities.pdb
-C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\WebApi.repository.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\WebApi.repository.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\WebApi.repository.AssemblyInfoInputs.cache
 C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\WebApi.repository.AssemblyInfo.cs
@@ -15,3 +14,4 @@ C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\WebApi.reposi
 C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\WebApi.repository.dll
 C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\ref\WebApi.repository.dll
 C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\WebApi.repository.pdb
+C:\Users\hp\source\repos\WebApi\WebApi.repository\obj\Debug\net5.0\WebApi.repository.csproj.AssemblyReference.cache

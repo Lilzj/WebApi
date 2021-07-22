@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,17 +21,17 @@ namespace WebApi.repository
 
         public void DeleteCompany(Company company) => Delete(company);
 
-        public IEnumerable<Company> GetAllCompanies(bool trackChanges) =>
-            FindAll(trackChanges)
+        public async Task<IEnumerable<Company>> GetAllCompaniesAsync(bool trackChanges) =>
+            await FindAll(trackChanges)
             .OrderBy(x => x.Name)
-            .ToList();
+            .ToListAsync();
 
-        public IEnumerable<Company> GetByIds(IEnumerable<string> ids, bool trackChanges) =>
-            FindByCondition(c => ids.Contains(c.Id), trackChanges)
-            .ToList();
+        public async Task<IEnumerable<Company>> GetByIdsAsync(IEnumerable<string> ids, bool trackChanges) =>
+            await FindByCondition(c => ids.Contains(c.Id), trackChanges)
+            .ToListAsync();
 
-        public Company GetCompany(string companyId, bool trackChanges) =>
-            FindByCondition(c => c.Id.Equals(companyId), trackChanges)
-            .SingleOrDefault();
+        public async Task<Company> GetCompanyAsync(string companyId, bool trackChanges) =>
+            await FindByCondition(c => c.Id.Equals(companyId), trackChanges)
+            .SingleOrDefaultAsync();
     }
 }

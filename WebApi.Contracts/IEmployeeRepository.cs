@@ -9,8 +9,8 @@ namespace WebApi.Contracts
 {
     public interface IEmployeeRepository
     {
-        IEnumerable<Employee> GetEmployees(string companyId, bool trackChanges);
-        Employee GetEmployee(string companyId, string id, bool trackChanges);
+        Task<IEnumerable<Employee>> GetEmployeesAsync(string companyId, bool trackChanges);
+        Task<Employee> GetEmployeeAsync(string companyId, string id, bool trackChanges);
         void AddEmployee(string companyId, Employee employee);
         void DeleteEmployee(Employee employee);
     }

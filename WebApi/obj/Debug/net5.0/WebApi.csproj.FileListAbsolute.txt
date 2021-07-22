@@ -4,7 +4,6 @@ C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.S
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\WebApi.Contracts.dll
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\WebApi.LoggerService.dll
-C:\Users\hp\source\repos\WebApi\WebApi\obj\Debug\net5.0\WebApi.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\WebApi\WebApi\obj\Debug\net5.0\WebApi.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\hp\source\repos\WebApi\WebApi\obj\Debug\net5.0\WebApi.AssemblyInfoInputs.cache
 C:\Users\hp\source\repos\WebApi\WebApi\obj\Debug\net5.0\WebApi.AssemblyInfo.cs
@@ -73,3 +72,4 @@ C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\WebApi.repository.dll
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\WebApi.repository.pdb
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\hp\source\repos\WebApi\WebApi\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\hp\source\repos\WebApi\WebApi\obj\Debug\net5.0\WebApi.csproj.AssemblyReference.cache

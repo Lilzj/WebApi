@@ -1,5 +1,4 @@
 C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\bin\Debug\net5.0\WebApi.Contracts.dll
-C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\obj\Debug\net5.0\WebApi.LoggerService.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\obj\Debug\net5.0\WebApi.LoggerService.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\obj\Debug\net5.0\WebApi.LoggerService.AssemblyInfoInputs.cache
 C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\obj\Debug\net5.0\WebApi.LoggerService.AssemblyInfo.cs
@@ -15,3 +14,4 @@ C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\obj\Debug\net5.0\ref\WebApi
 C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\obj\Debug\net5.0\WebApi.LoggerService.pdb
 C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\bin\Debug\net5.0\WebApi.Entities.dll
 C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\bin\Debug\net5.0\WebApi.Entities.pdb
+C:\Users\hp\source\repos\WebApi\WebApi.LoggerService\obj\Debug\net5.0\WebApi.LoggerService.csproj.AssemblyReference.cache

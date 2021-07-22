@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,12 +25,13 @@ namespace WebApi.repository
 
         public void DeleteEmployee(Employee employee) => Delete(employee);
 
-        public Employee GetEmployee(string companyId, string id, bool trackChanges) =>
-            FindByCondition(e => e.CompanyId.Equals(companyId) && e.Id.Equals(id), trackChanges)
-            .SingleOrDefault();
+        public async Task<Employee> GetEmployeeAsync(string companyId, string id, bool trackChanges) =>
+            await FindByCondition(e => e.CompanyId.Equals(companyId) && e.Id.Equals(id), trackChanges)
+            .SingleOrDefaultAsync();
 
-        public IEnumerable<Employee> GetEmployees(string companyId, bool trackChanges) =>
-            FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
-            .OrderBy(e => e.name);
+        public async Task<IEnumerable<Employee>> GetEmployeesAsync(string companyId, bool trackChanges) =>
+            await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
+            .OrderBy(e => e.name)
+            .ToListAsync();
     }
 }

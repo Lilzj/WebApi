@@ -39,6 +39,6 @@ namespace WebApi.repository
             }
         }
 
-        public void Save() => _ctx.SaveChanges();
+        public Task SaveAsync() => _ctx.SaveChangesAsync();
     }
 }

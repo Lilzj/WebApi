@@ -28,9 +28,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetEmployeesForCompany(string companyId)
+        public async Task<IActionResult> GetEmployeesForCompanyAsync(string companyId)
         {
-            var company = _repo.Company.GetCompany(companyId, trackChanges: false);
+            var company = await _repo.Company.GetCompanyAsync(companyId, trackChanges: false);
             if (company == null)
             {
                 _log.LogInfo($"Company with the Id {companyId} does not exist in the database");
@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             }
             else
             {
-                var employeesFromDb = _repo.Employee.GetEmployees(companyId, trackChanges: false);
+                var employeesFromDb = await _repo.Employee.GetEmployeesAsync(companyId, trackChanges: false);
 
                 var employessDto = _map.Map<IEnumerable<EmployeeDTO>>(employeesFromDb);
 
@@ -47,16 +47,16 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}", Name = "companyId")]
-        public IActionResult GetEmployeeForACompany(string companyId, string id)
+        public async Task<IActionResult> GetEmployeeForACompanyAsync(string companyId, string id)
         {
-            var comapny = _repo.Company.GetCompany(companyId, trackChanges: false);
+            var comapny = await _repo.Company.GetCompanyAsync(companyId, trackChanges: false);
             if(comapny ==null)
             {
                 _log.LogInfo($"Company with the Id {companyId} does not exist in the database");
                 return NotFound();
             }
 
-            var EmployeeDb = _repo.Employee.GetEmployee(companyId, id, trackChanges: false);
+            var EmployeeDb = await _repo.Employee.GetEmployeeAsync(companyId, id, trackChanges: false);
             if (EmployeeDb == null)
             {
                 _log.LogInfo($"Company with the Id {companyId} does not exist in the database");
@@ -68,7 +68,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddEmployee(string companyId, [FromBody] AddEmployeeDTO employee)
+        public async Task<IActionResult> AddEmployeeAsync(string companyId, [FromBody] AddEmployeeDTO employee)
         {
             if(employee == null)
             {
@@ -76,7 +76,7 @@ namespace WebApi.Controllers
                 return BadRequest("EmployeeDto object is null");
             }
 
-            var company = _repo.Company.GetCompany(companyId, trackChanges: false);
+            var company = await _repo.Company.GetCompanyAsync(companyId, trackChanges: false);
             if(company == null)
             {
                 _log.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
@@ -91,7 +91,7 @@ namespace WebApi.Controllers
 
             var employeeEntity = _map.Map<Employee>(employee);
             _repo.Employee.AddEmployee(companyId, employeeEntity);
-            _repo.Save();
+            await _repo.SaveAsync();
 
             var EmployeeReturn = _map.Map<EmployeeDTO>(employeeEntity);
             return CreatedAtRoute("companyId", new { 
@@ -102,16 +102,17 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteEmployee(string companyId, string id)
+        public async Task<IActionResult> DeleteEmployeeAsync(string companyId, string id)
         {
-            var company = _repo.Company.GetCompany(companyId, trackChanges: false);
+            var company = await _repo.Company.GetCompanyAsync(companyId, trackChanges: false);
             if (company == null) 
             {
                 _log.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
                 return NotFound(); 
             } 
             
-            var employeeForCompany = _repo.Employee.GetEmployee(companyId, id, trackChanges: false);
+            var employeeForCompany = await _repo.Employee.GetEmployeeAsync(companyId, id, trackChanges: false);
+
             if (employeeForCompany == null)
             {
                 _log.LogInfo($"Employee with id: {id} doesn't exist in the database.");
@@ -119,12 +120,12 @@ namespace WebApi.Controllers
             } 
             
             _repo.Employee.DeleteEmployee(employeeForCompany);
-            _repo.Save(); 
+            await _repo.SaveAsync(); 
             return NoContent(); 
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateEmployee(string companyId, string id, [FromBody]UpdateEmployeeDTO employee)
+        public async Task<IActionResult> UpdateEmployeeAsync(string companyId, string id, [FromBody]UpdateEmployeeDTO employee)
         {
             if(employee == null)
             {
@@ -132,14 +133,14 @@ namespace WebApi.Controllers
                 return BadRequest("updateEmployeeDTO is null");
             }
 
-            var company = _repo.Company.GetCompany(companyId, trackChanges: false);
+            var company = await _repo.Company.GetCompanyAsync(companyId, trackChanges: false);
             if(company == null)
             {
                 _log.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
                 return NotFound();
             }
 
-            var employeeEntity = _repo.Employee.GetEmployee(companyId, id, trackChanges: true);
+            var employeeEntity = await _repo.Employee.GetEmployeeAsync(companyId, id, trackChanges: true);
             if(employeeEntity == null)
             {
                 _log.LogInfo($"Employee with id: {id} doesn't exist in the database.");
@@ -147,7 +148,7 @@ namespace WebApi.Controllers
             }
 
             _map.Map(employee, employeeEntity);
-            _repo.Save();
+            await _repo.SaveAsync();
 
             return NoContent();
         }

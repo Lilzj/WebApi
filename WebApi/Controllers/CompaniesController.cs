@@ -29,9 +29,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllCompanies()
+        public async Task<IActionResult> GetAllCompaniesAsync()
         {
-                var companies = _repo.Company.GetAllCompanies(trackChanges: false);
+                var companies = await _repo.Company.GetAllCompaniesAsync(trackChanges: false);
 
                 var companiesDto = _map.Map<IEnumerable<CompanyDTO>>(companies);
 
@@ -40,9 +40,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}", Name ="GetCompany")]
-        public IActionResult GetCompany(string id)
+        public async Task<IActionResult> GetCompanyAsync(string id)
         {
-            var company = _repo.Company.GetCompany(id, trackChanges: false);
+            var company = await _repo.Company.GetCompanyAsync(id, trackChanges: false);
             if(company == null)
             {
                 _log.LogInfo($"Company with id {id} does not exist in the database");
@@ -56,7 +56,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCompany([FromBody] AddCompanyDTO company)
+        public async Task<ActionResult> AddCompany([FromBody] AddCompanyDTO company)
         {
             if(company == null)
             {
@@ -65,15 +65,15 @@ namespace WebApi.Controllers
             }
 
             var companyEntity = _map.Map<Company>(company);
-            _repo.Company.AddCompany(companyEntity);
-            _repo.Save();
+             _repo.Company.AddCompany(companyEntity);
+            await _repo.SaveAsync();
 
             var companyReturn = _map.Map<CompanyDTO>(companyEntity);
             return CreatedAtRoute("GetCompany", new { id = companyReturn.Id }, companyReturn);
         }
 
         [HttpGet("collection/({ids})", Name ="companies")]
-        public IActionResult GetCompanies([ModelBinder(BinderType =typeof(ArrayModelBinder))]IEnumerable<string> ids)
+        public async Task<IActionResult> GetCompaniesAsync([ModelBinder(BinderType =typeof(ArrayModelBinder))]IEnumerable<string> ids)
         {
             if(ids == null)
             {
@@ -81,7 +81,7 @@ namespace WebApi.Controllers
                 return BadRequest("Ids sent is null");
             }
 
-            var companyEntities = _repo.Company.GetByIds(ids, trackChanges: false);
+            var companyEntities = await _repo.Company.GetByIdsAsync(ids, trackChanges: false);
             if(ids.Count() != companyEntities.Count())
             {
                 _log.LogError("Some input ids are not valid");
@@ -93,7 +93,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("collection")] 
-        public IActionResult AddCompanies([FromBody] IEnumerable<AddCompanyDTO> companies)
+        public async Task<IActionResult> AddCompaniesAsync([FromBody] IEnumerable<AddCompanyDTO> companies)
         {
             if (companies == null)
             { 
@@ -107,7 +107,7 @@ namespace WebApi.Controllers
             {
                 _repo.Company.AddCompany(company); 
             } 
-            _repo.Save();
+            await _repo.SaveAsync();
 
             var companiesReturn = _map.Map<IEnumerable<CompanyDTO>>(companyEntities); 
 
@@ -116,9 +116,9 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")] 
-        public IActionResult DeleteCompany(string id)
+        public async Task<IActionResult> DeleteCompanyAsync(string id)
         {
-            var company = _repo.Company.GetCompany(id, trackChanges: false);
+            var company = await _repo.Company.GetCompanyAsync(id, trackChanges: false);
 
             if (company == null) 
             {
@@ -127,13 +127,13 @@ namespace WebApi.Controllers
             }
 
             _repo.Company.DeleteCompany(company);
-            _repo.Save();
+            await _repo.SaveAsync();
 
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCompany(string id, [FromBody] UpdateCompanyDTO company)
+        public async Task<IActionResult> UpdateCompanyAsync(string id, [FromBody] UpdateCompanyDTO company)
         {
             if(company == null)
             {
@@ -141,7 +141,7 @@ namespace WebApi.Controllers
                 return BadRequest("UpdateCompanyDTO is null");
             }
 
-            var companyEntity = _repo.Company.GetCompany(id, trackChanges: false);
+            var companyEntity = await _repo.Company.GetCompanyAsync(id, trackChanges: false);
             if(companyEntity == null)
             {
                 _log.LogInfo($"Company with id: {id} doesn't exist in the database.");
@@ -149,7 +149,7 @@ namespace WebApi.Controllers
             }
 
             _map.Map(company, companyEntity);
-            _repo.Save();
+            await _repo.SaveAsync();
 
             return NoContent();
         }
