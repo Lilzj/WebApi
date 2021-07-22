@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebApi.Entities.DTO
 {
-    public class UpdateEmployeeDTO
+    public class UpdateEmployeeDTO : ManipulateEmployeeDTO
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public string Position { get; set; }
+      
     }
 }
