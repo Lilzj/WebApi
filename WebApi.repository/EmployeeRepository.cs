@@ -22,6 +22,7 @@ namespace WebApi.repository
             Create(employee);
         }
 
+        public void DeleteEmployee(Employee employee) => Delete(employee);
 
         public Employee GetEmployee(string companyId, string id, bool trackChanges) =>
             FindByCondition(e => e.CompanyId.Equals(companyId) && e.Id.Equals(id), trackChanges)

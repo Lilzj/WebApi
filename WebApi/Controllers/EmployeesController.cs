@@ -94,5 +94,56 @@ namespace WebApi.Controllers
 
 
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEmployee(string companyId, string id)
+        {
+            var company = _repo.Company.GetCompany(companyId, trackChanges: false);
+            if (company == null) 
+            {
+                _log.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
+                return NotFound(); 
+            } 
+            
+            var employeeForCompany = _repo.Employee.GetEmployee(companyId, id, trackChanges: false);
+            if (employeeForCompany == null)
+            {
+                _log.LogInfo($"Employee with id: {id} doesn't exist in the database.");
+                return NotFound();
+            } 
+            
+            _repo.Employee.DeleteEmployee(employeeForCompany);
+            _repo.Save(); 
+            return NoContent(); 
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateEmployee(string companyId, string id, [FromBody]UpdateEmployeeDTO employee)
+        {
+            if(employee == null)
+            {
+                _log.LogError("updateEmployeeDTO sent from client is null");
+                return BadRequest("updateEmployeeDTO is null");
+            }
+
+            var company = _repo.Company.GetCompany(companyId, trackChanges: false);
+            if(company == null)
+            {
+                _log.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            var employeeEntity = _repo.Employee.GetEmployee(companyId, id, trackChanges: false);
+            if(employeeEntity == null)
+            {
+                _log.LogInfo($"Employee with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _map.Map(employee, employeeEntity);
+            _repo.Save();
+
+            return NoContent();
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace WebApi.Contracts
         IEnumerable<Employee> GetEmployees(string companyId, bool trackChanges);
         Employee GetEmployee(string companyId, string id, bool trackChanges);
         void AddEmployee(string companyId, Employee employee);
+        void DeleteEmployee(Employee employee);
     }
 }

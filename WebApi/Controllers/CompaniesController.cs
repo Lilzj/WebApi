@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using WebApi.Contracts;
 using WebApi.Entities.DTO;
 using WebApi.Entities.Models;
+using WebApi.ModelBinding;
 
 namespace WebApi.Controllers
 {
@@ -71,7 +73,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("collection/({ids})", Name ="companies")]
-        public IActionResult GetCompanies(IEnumerable<string> ids)
+        public IActionResult GetCompanies([ModelBinder(BinderType =typeof(ArrayModelBinder))]IEnumerable<string> ids)
         {
             if(ids == null)
             {
@@ -110,6 +112,24 @@ namespace WebApi.Controllers
             var companiesReturn = _map.Map<IEnumerable<CompanyDTO>>(companyEntities); 
 
             var ids = string.Join(",", companiesReturn.Select(c => c.Id));
-            return CreatedAtRoute("companies", new { ids }, companiesReturn); }
+            return CreatedAtRoute("companies", new { ids }, companiesReturn);
+        }
+
+        [HttpDelete("{id}")] 
+        public IActionResult DeleteCompany(string id)
+        {
+            var company = _repo.Company.GetCompany(id, trackChanges: false);
+
+            if (company == null) 
+            {
+                _log.LogInfo($"Company with id: {id} doesn't exist in the database.");
+                return NotFound(); 
+            }
+
+            _repo.Company.DeleteCompany(company);
+            _repo.Save();
+
+            return NoContent();
+        }
     }
 }

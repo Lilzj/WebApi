@@ -19,6 +19,7 @@ namespace WebApi.profiles
             CreateMap<Employee, EmployeeDTO>();
             CreateMap<AddCompanyDTO, Company>();
             CreateMap<AddEmployeeDTO, Employee>();
+            CreateMap<UpdateEmployeeDTO, Employee>();
 
         }
     }

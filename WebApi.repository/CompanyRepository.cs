@@ -18,6 +18,8 @@ namespace WebApi.repository
 
         public void AddCompany(Company company) => Create(company);
 
+        public void DeleteCompany(Company company) => Delete(company);
+
         public IEnumerable<Company> GetAllCompanies(bool trackChanges) =>
             FindAll(trackChanges)
             .OrderBy(x => x.Name)
