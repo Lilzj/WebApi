@@ -33,10 +33,10 @@ namespace WebApi.repository
 
         public async Task<PagedList<Employee>> GetEmployeesAsync(string companyId, EmployeeParam employeeParam, bool trackChanges)
         {
-           var employees = await FindByCondition(e => e.CompanyId.Equals(companyId)
-               && (e.Age >= employeeParam.MinAge && e.Age <= employeeParam.MaxAge), trackChanges)
-          .OrderBy(e => e.name)
-          .ToListAsync(); 
+            var employees = await FindByCondition(e => e.CompanyId.Equals(companyId)
+              .FilterEmployees(employeeParam.MinAge, employeeParam.MaxAge)
+              .OrderBy(e => e.name)
+              .ToListAsync(); 
 
             return PagedList<Employee>
                 .ToPagedList(employees, employeeParam.PageNumber, employeeParam.PageSize);

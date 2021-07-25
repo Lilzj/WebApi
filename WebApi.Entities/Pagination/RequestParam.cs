@@ -30,6 +30,7 @@ namespace WebApi.Entities.Pagination
             public uint MaxAge { get; set; } = int.MaxValue;
 
             public bool ValidAgeRange => MaxAge > MinAge;
+            public string searchTerm { get; set; }
         }
     }
 }
