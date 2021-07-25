@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using WebApi.Contracts;
 using WebApi.Entities.DTO;
 using WebApi.Entities.Models;
+using static WebApi.Entities.Pagination.RequestParam;
 
 namespace WebApi.Controllers
 {
@@ -28,7 +30,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEmployeesForCompanyAsync(string companyId)
+        public async Task<IActionResult> GetEmployeesForCompanyAsync(string companyId, [FromQuery] EmployeeParam employeeParam)
         {
             var company = await _repo.Company.GetCompanyAsync(companyId, trackChanges: false);
             if (company == null)
@@ -38,7 +40,9 @@ namespace WebApi.Controllers
             }
             else
             {
-                var employeesFromDb = await _repo.Employee.GetEmployeesAsync(companyId, trackChanges: false);
+                var employeesFromDb = await _repo.Employee.GetEmployeesAsync(companyId, employeeParam, trackChanges: false);
+
+                Response.Headers.Add("pagination", JsonConvert.SerializeObject(employeesFromDb.metaData));
 
                 var employessDto = _map.Map<IEnumerable<EmployeeDTO>>(employeesFromDb);
 

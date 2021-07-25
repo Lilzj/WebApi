@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using WebApi.Contracts;
 using WebApi.Entities;
 using WebApi.Entities.Models;
+using WebApi.Entities.Pagination;
+using static WebApi.Entities.Pagination.RequestParam;
 
 namespace WebApi.repository
 {
@@ -29,9 +31,15 @@ namespace WebApi.repository
             await FindByCondition(e => e.CompanyId.Equals(companyId) && e.Id.Equals(id), trackChanges)
             .SingleOrDefaultAsync();
 
-        public async Task<IEnumerable<Employee>> GetEmployeesAsync(string companyId, bool trackChanges) =>
-            await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
-            .OrderBy(e => e.name)
-            .ToListAsync();
+        public async Task<PagedList<Employee>> GetEmployeesAsync(string companyId, EmployeeParam employeeParam, bool trackChanges)
+        {
+           var employees = await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
+          .OrderBy(e => e.name)
+          .ToListAsync(); 
+
+            return PagedList<Employee>
+                .ToPagedList(employees, employeeParam.PageNumber, employeeParam.PageSize);
+        }
+          
     }
 }
