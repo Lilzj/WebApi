@@ -1,4 +1,0 @@
-2021-07-12 14:33:21.7381 INFO Company with id 9c6f358f-7238-451e-b4de-006dcb8901b5 does not exist in the database
-2021-07-12 14:36:12.9835 INFO Company with id 9c6f358f-7238-451e-b4de-006dcb8901b5 does not exist in the database
-2021-07-12 14:39:33.8320 INFO Company with id 5201a2f6-de8c-4a01-9c5d-2ead97449291 does not exist in the database
-2021-07-12 14:42:49.9624 INFO Company with id 9e24c2bf-b284-4764-934f-cd5005171044 does not exist in the database
