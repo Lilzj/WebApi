@@ -1,13 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebApi.Contracts;
 using WebApi.Entities;
 using WebApi.Entities.Models;
 using WebApi.Entities.Pagination;
+using WebApi.repository.Extension;
 using static WebApi.Entities.Pagination.RequestParam;
 
 namespace WebApi.repository
@@ -33,10 +31,11 @@ namespace WebApi.repository
 
         public async Task<PagedList<Employee>> GetEmployeesAsync(string companyId, EmployeeParam employeeParam, bool trackChanges)
         {
-            var employees = await FindByCondition(e => e.CompanyId.Equals(companyId)
-              .FilterEmployees(employeeParam.MinAge, employeeParam.MaxAge)
-              .OrderBy(e => e.name)
-              .ToListAsync(); 
+            var employees = await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
+                .FilterEmployees(employeeParam.MinAge, employeeParam.MaxAge)
+                .Search(employeeParam.searchTerm)
+                .OrderBy(e => e.name)
+                .ToListAsync();
 
             return PagedList<Employee>
                 .ToPagedList(employees, employeeParam.PageNumber, employeeParam.PageSize);
