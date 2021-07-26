@@ -34,7 +34,7 @@ namespace WebApi.repository
             var employees = await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
                 .FilterEmployees(employeeParam.MinAge, employeeParam.MaxAge)
                 .Search(employeeParam.searchTerm)
-                .OrderBy(e => e.name)
+                .Sort(employeeParam.OrderBy)
                 .ToListAsync();
 
             return PagedList<Employee>

@@ -24,13 +24,6 @@ namespace WebApi.Entities.Pagination
             }
         }
 
-        public class EmployeeParam : RequestParam
-        {
-            public uint MinAge { get; set; }
-            public uint MaxAge { get; set; } = int.MaxValue;
-
-            public bool ValidAgeRange => MaxAge > MinAge;
-            public string searchTerm { get; set; }
-        }
+        public string OrderBy { get; set; }
     }
 }

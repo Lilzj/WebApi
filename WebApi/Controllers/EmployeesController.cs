@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using WebApi.Contracts;
 using WebApi.Entities.DTO;
 using WebApi.Entities.Models;
+using WebApi.Entities.Pagination;
 using static WebApi.Entities.Pagination.RequestParam;
 
 namespace WebApi.Controllers

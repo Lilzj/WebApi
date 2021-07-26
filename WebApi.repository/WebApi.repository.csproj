@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.11" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WebApi.Contracts\WebApi.Contracts.csproj" />
     <ProjectReference Include="..\WebApi.Entities\WebApi.Entities.csproj" />
   </ItemGroup>
