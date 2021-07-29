@@ -18,16 +18,18 @@ namespace WebApi.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
+        private readonly IDataShaper<EmployeeDTO> _dataShaper;
         private readonly IRepositoryManager _repo;
         private readonly ILoggerManager _log;
         private readonly IMapper _map;
         
         public EmployeesController(IRepositoryManager repository, ILoggerManager logger, 
-            IMapper mapper) 
+            IMapper mapper, IDataShaper<EmployeeDTO> dataShaper) 
         {
             _repo = repository;
             _log = logger;
-            _map = mapper; 
+            _map = mapper;
+            _dataShaper = dataShaper;
         }
 
         [HttpGet]
@@ -49,9 +51,9 @@ namespace WebApi.Controllers
 
                 Response.Headers.Add("pagination", JsonConvert.SerializeObject(employeesFromDb.metaData));
 
-                var employessDto = _map.Map<IEnumerable<EmployeeDTO>>(employeesFromDb);
+                var employeesDto = _map.Map<IEnumerable<EmployeeDTO>>(employeesFromDb);
 
-                return Ok(employessDto);              
+                return Ok(_dataShaper.ShapeData(employeesDto, employeeParam.Fields));
             }
         }
 

@@ -15,7 +15,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Contracts;
+using WebApi.Entities.DTO;
 using WebApi.Extensions;
+using WebApi.repository;
 
 namespace WebApi
 {
@@ -38,6 +40,7 @@ namespace WebApi
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IDataShaper<EmployeeDTO>, DataShaper<EmployeeDTO>>();
 
             services.AddControllers(config =>
             {
